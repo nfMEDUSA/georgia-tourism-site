@@ -1,0 +1,237 @@
+ 
+:root {
+    --color-amber: #D97736;
+    --color-amber-hover: #BF652B;
+    --color-slate: #1A1D20;
+    --color-stone: #F9F8F6;
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body { 
+    font-family: var(--font-body); 
+    background-color: var(--color-stone); 
+    color: var(--color-slate);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* --- HERO SECTION --- */
+  .hero {
+    position: relative;
+    height: 90vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    /* High-res image of Gergeti Trinity Church / Kazbegi */
+    background: linear-gradient(rgba(26, 29, 32, 0.4), rgba(26, 29, 32, 0.7)), 
+                url('https://images.unsplash.com/photo-1568849676085-51415703900f?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    padding: 0 20px;
+    z-index: 2;
+  }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    color: var(--color-amber);
+    font-weight: 600;
+  }
+
+  .hero h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1.1;
+    margin-bottom: 25px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    opacity: 0.95;
+    max-width: 600px;
+    margin-inline: auto;
+  }
+
+  .cta-group {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .btn {
+    padding: 16px 36px;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+  }
+
+  .btn-primary {
+    background-color: var(--color-amber);
+    color: white;
+  }
+
+  .btn-primary:hover { 
+    background-color: var(--color-amber-hover); 
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid white;
+    backdrop-filter: blur(5px);
+  }
+
+  .btn-secondary:hover { 
+    background-color: white; 
+    color: var(--color-slate); 
+  }
+
+  /* --- FEATURED TOURS SECTION --- */
+  .featured-tours {
+    padding: 100px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .section-header h2 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+  }
+
+  .section-header p {
+    color: #555;
+    font-size: 1.1rem;
+  }
+
+  .tour-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+  }
+
+  .tour-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    cursor: pointer;
+  }
+
+  .tour-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  }
+
+  .tour-image-wrapper {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .tour-image {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    transition: transform 0.6s ease;
+  }
+
+  /* Zoom effect on hover */
+  .tour-card:hover .tour-image {
+    transform: scale(1.08);
+  }
+
+  .tag {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: var(--color-amber);
+    color: white;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 2;
+  }
+
+  .tour-content {
+    padding: 30px;
+  }
+
+  .tour-content h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--color-slate);
+  }
+
+  .tour-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: #666;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+  }
+
+  .tour-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .price {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--color-amber);
+  }
+
+  .price span {
+    font-size: 0.85rem;
+    color: #888;
+    font-weight: 400;
+  }
+
+  .view-tour {
+    color: var(--color-slate);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+  }
+
+  .tour-card:hover .view-tour {
+    color: var(--color-amber);
+  }
+
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .cta-group { flex-direction: column; }
+    .hero h1 { font-size: 2.5rem; }
+  }

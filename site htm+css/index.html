@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GeoEscape Tours | Premium Journeys in Georgia</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-amber: #D97736;
+    --color-amber-hover: #BF652B;
+    --color-slate: #1A1D20;
+    --color-stone: #F9F8F6;
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body { 
+    font-family: var(--font-body); 
+    background-color: var(--color-stone); 
+    color: var(--color-slate);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* --- HERO SECTION --- */
+  .hero {
+    position: relative;
+    height: 90vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    /* High-res image of Gergeti Trinity Church / Kazbegi */
+    background: linear-gradient(rgba(26, 29, 32, 0.4), rgba(26, 29, 32, 0.7)), 
+                url('https://images.unsplash.com/photo-1568849676085-51415703900f?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    padding: 0 20px;
+    z-index: 2;
+  }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    color: var(--color-amber);
+    font-weight: 600;
+  }
+
+  .hero h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1.1;
+    margin-bottom: 25px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    opacity: 0.95;
+    max-width: 600px;
+    margin-inline: auto;
+  }
+
+  .cta-group {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .btn {
+    padding: 16px 36px;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+  }
+
+  .btn-primary {
+    background-color: var(--color-amber);
+    color: white;
+  }
+
+  .btn-primary:hover { 
+    background-color: var(--color-amber-hover); 
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid white;
+    backdrop-filter: blur(5px);
+  }
+
+  .btn-secondary:hover { 
+    background-color: white; 
+    color: var(--color-slate); 
+  }
+
+  /* --- FEATURED TOURS SECTION --- */
+  .featured-tours {
+    padding: 100px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .section-header h2 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+  }
+
+  .section-header p {
+    color: #555;
+    font-size: 1.1rem;
+  }
+
+  .tour-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+  }
+
+  .tour-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    cursor: pointer;
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .tour-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  }
+
+  .tour-image-wrapper {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .tour-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .feature-img {
+    width: 100%;
+    max-width: 1000px;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    display: block;
+    margin: 40px auto;
+    object-fit: cover;
+  }
+
+  .gallery-img {
+    width: 100%;
+    max-width: 1100px;
+    border-radius: 18px;
+    box-shadow: 0 24px 50px rgba(0,0,0,0.08);
+    margin: 30px auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  /* Zoom effect on hover */
+  .tour-card:hover .tour-image {
+    transform: scale(1.08);
+  }
+
+  .tag {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: var(--color-amber);
+    color: white;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 2;
+  }
+
+  .footer-content {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    padding: 60px 5%;
+    background: #1a1d20;
+    color: #f3f3f3;
+  }
+
+  .footer-col h4 {
+    margin-bottom: 16px;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+  }
+
+  .footer-col p {
+    line-height: 1.8;
+    color: #d4d4d4;
+  }
+
+  .tour-content {
+    padding: 30px;
+  }
+
+  .tour-content h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--color-slate);
+  }
+
+  .tour-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: #666;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+  }
+
+  .tour-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .footer-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .chat-btn {
+    background: var(--color-amber);
+    border: none;
+    color: white;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 10px 18px rgba(0,0,0,0.12);
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+
+  .chat-btn:hover {
+    transform: translateY(-2px);
+    background: var(--color-amber-hover);
+  }
+
+  .card-link {
+    color: var(--color-slate);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+  }
+
+  .tour-card:hover .card-link {
+    color: var(--color-amber);
+  }
+
+  .chat-popup {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: min(380px, calc(100% - 32px));
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.18);
+    display: none;
+    z-index: 999;
+    overflow: hidden;
+    font-family: var(--font-body);
+  }
+
+  .chat-popup.open {
+    display: block;
+  }
+
+  .chat-header {
+    background: var(--color-slate);
+    color: white;
+    padding: 18px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .chat-header h4 {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .chat-close {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.3rem;
+    cursor: pointer;
+  }
+
+  .chat-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .chat-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 260px;
+    overflow-y: auto;
+  }
+
+  .chat-message {
+    background: #f4f4f4;
+    padding: 12px 14px;
+    border-radius: 14px;
+    line-height: 1.5;
+    font-size: 0.95rem;
+  }
+
+  .chat-message.user {
+    align-self: flex-end;
+    background: var(--color-amber);
+    color: white;
+  }
+
+  .chat-input-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .chat-input {
+    flex: 1;
+    padding: 12px 14px;
+    border-radius: 999px;
+    border: 1px solid #ddd;
+    outline: none;
+  }
+
+  .chat-send {
+    background: var(--color-amber);
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .chat-send:hover {
+    background: var(--color-amber-hover);
+  }
+
+  .price {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--color-amber);
+  }
+
+  .price span {
+    font-size: 0.85rem;
+    color: #888;
+    font-weight: 400;
+  }
+
+  .view-tour {
+    color: var(--color-slate);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+  }
+
+  .tour-card:hover .view-tour {
+    color: var(--color-amber);
+  }
+
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .cta-group { flex-direction: column; }
+    .hero h1 { font-size: 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="eyebrow">Authentic Local-Led Journeys</div>
+      <h1>Experience the Wild Heart & Ancient Soul of Georgia.</h1>
+      <p>Leave the tourist trail behind. Join our expert local guides for authentic, small-group adventures and private luxury tours tailored to the modern explorer.</p>
+      <div class="cta-group">
+        <a href="#tours" class="btn btn-primary">Find Your Adventure</a>
+        <a href="#custom" class="btn btn-secondary">Design a Custom Trip</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="local-image-example">
+    <div class="section-header">
+      <h2>Local Image Example</h2>
+      <p>This image is loaded from a local file using an <code>&lt;img&gt;</code> tag.</p>
+    </div>
+    <img src="images/kakheti/kakheti.png" alt="Kakheti wine region" class="feature-img">
+  </section>
+
+  <!-- FEATURED TOURS SECTION -->
+  <section class="featured-tours" id="tours">
+    <div class="section-header">
+      <h2>Curated Journeys for the Curious</h2>
+      <p>Discover our highest-rated small group and private experiences.</p>
+    </div>
+
+    <div class="tour-grid">
+      
+      <!-- TOUR CARD 1: Svaneti Trekking -->
+      <div class="tour-card">
+        <div class="tour-image-wrapper">
+          <div class="tag">Active & Hiking</div>
+          <img class="tour-image" src="images/svaneti/svaneti-1.jpg" alt="Svaneti mountains trekking">
+        </div>
+        <div class="tour-content">
+          <h3>7-Day Svaneti Cultural Trek</h3>
+          <div class="tour-details">
+            <span>⏱ 7 Days</span>
+            <span>👥 Max 8 People</span>
+          </div>
+          <div class="tour-footer">
+            <div class="price"><span>From</span> $1,249</div>
+            <div class="footer-actions">
+              <button type="button" class="chat-btn" onclick="openChat('Svaneti Cultural Trek')" aria-label="Chat about Svaneti tour">💬</button>
+              <a href="tour-svaneti.html" class="card-link">View Itinerary →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOUR CARD 2: Kakheti Wine -->
+      <div class="tour-card">
+        <div class="tour-image-wrapper">
+          <div class="tag">Culture & Culinary</div>
+          <img class="tour-image" src="images/kakheti/kakheti-1.jpg" alt="Kakheti wine tasting">
+        </div>
+        <div class="tour-content">
+          <h3>A Taste of Kakheti: Wine & Gastronomy</h3>
+          <div class="tour-details">
+            <span>⏱ 3 Days</span>
+            <span>🚗 Private Tour</span>
+          </div>
+          <div class="tour-footer">
+            <div class="price"><span>From</span> $650</div>
+            <div class="footer-actions">
+              <button type="button" class="chat-btn" onclick="openChat('Kakheti Wine & Gastronomy')" aria-label="Chat about Kakheti tour">💬</button>
+              <a href="tour-kakheti.html" class="card-link">View Itinerary →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOUR CARD 3: Tbilisi to Kazbegi -->
+      <div class="tour-card">
+        <div class="tour-image-wrapper">
+          <div class="tag">Discovery Road Trip</div>
+          <img class="tour-image" src="images/roadtrip/roadtrip-1.jpg" alt="Tbilisi road trip scenery">
+        </div>
+        <div class="tour-content">
+          <h3>The Ultimate Caucasus Road Trip</h3>
+          <div class="tour-details">
+            <span>⏱ 5 Days</span>
+            <span>👥 Max 6 People</span>
+          </div>
+          <div class="tour-footer">
+            <div class="price"><span>From</span> $999</div>
+            <div class="footer-actions">
+              <button type="button" class="chat-btn" onclick="openChat('Caucasus Road Trip')" aria-label="Chat about road trip tour">💬</button>
+              <a href="tour-roadtrip.html" class="card-link">View Itinerary →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="chatPopup" class="chat-popup" aria-hidden="true">
+    <div class="chat-header">
+      <h4>Book a tour</h4>
+      <button type="button" class="chat-close" onclick="closeChat()" aria-label="Close chat">✕</button>
+    </div>
+    <div class="chat-body">
+      <div id="chatContext" class="chat-message">Message us about your tour and we will reply quickly.</div>
+      <div id="chatMessages" class="chat-messages"></div>
+      <div class="chat-input-group">
+        <input id="chatInput" type="text" class="chat-input" placeholder="Write your question..." aria-label="Chat message input">
+        <button type="button" class="chat-send" onclick="sendChat()">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-col">
+        <h4>GeoEscape Tours</h4>
+        <p>Authentic, premium travel experiences across Georgia, designed for small groups and private travelers who want more than the usual route.</p>
+      </div>
+
+      <!-- ========================================================= -->
+      <!--       👇👇👇 EDIT YOUR CONTACT INFO HERE 👇👇👇           -->
+      <!-- ========================================================= -->
+      <div class="footer-col">
+        <h4>Contact & Reservations</h4>
+        <p><strong>Email:</strong> fifiazura65@gmail.com</p>
+        <p><strong>Phone:</strong> +995 599 40 48 10</p>
+        <p><strong>Address:</strong> Varketili, Tbilisi, Georgia</p>
+      </div>
+      <!-- ========================================================= -->
+      <!--       👆👆👆 EDIT YOUR CONTACT INFO HERE 👆👆👆           -->
+      <!-- ========================================================= -->
+
+      <div class="footer-col">
+        <h4>Customer Promise</h4>
+        <p>Secure online booking, flexible cancellations, and personal local support during your entire journey.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const chatPopup = document.getElementById('chatPopup');
+    const chatMessages = document.getElementById('chatMessages');
+    const chatInput = document.getElementById('chatInput');
+    const chatContext = document.getElementById('chatContext');
+    let chatTour = 'General Tour';
+
+    function openChat(tour) {
+      chatTour = tour;
+      chatContext.textContent = `Book or ask about: ${tour}`;
+      chatPopup.classList.add('open');
+      chatPopup.setAttribute('aria-hidden', 'false');
+      chatInput.focus();
+    }
+
+    function closeChat() {
+      chatPopup.classList.remove('open');
+      chatPopup.setAttribute('aria-hidden', 'true');
+    }
+
+    function sendChat() {
+      const text = chatInput.value.trim();
+      if (!text) {
+        chatInput.focus();
+        return;
+      }
+
+      const userMessage = document.createElement('div');
+      userMessage.className = 'chat-message user';
+      userMessage.textContent = text;
+      chatMessages.appendChild(userMessage);
+      chatInput.value = '';
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      setTimeout(() => {
+        const botMessage = document.createElement('div');
+        botMessage.className = 'chat-message';
+        botMessage.textContent = `Thanks! Your message about "${chatTour}" has been received. We will contact you using the details in the footer.`;
+        chatMessages.appendChild(botMessage);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }, 600);
+    }
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeChat();
+      }
+    });
+  </script>
+</body>
+</html>
